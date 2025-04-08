@@ -1,25 +1,29 @@
 {
-  "name": "hemly",
+  "name": "bot-discord-finnal",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wignn/bot.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wignn/bot/issues"
-  },
-  "homepage": "https://github.com/wignn/bot#readme",
   "description": "",
   "dependencies": {
-    "discord.js": "^14.18.0",
+    "@discordjs/rest": "^2.4.0",
+    "@discordjs/voice": "^0.18.0",
+    "@google/generative-ai": "^0.21.0",
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "colors": "^1.4.0",
+    "discord.js": "^14.16.3",
     "dotenv": "^16.4.7",
-    "groq-sdk": "^0.19.0"
+    "fs": "^0.0.1-security",
+    "groq": "^3.67.1",
+    "groq-sdk": "^0.9.1",
+    "nodemon": "^3.1.7",
+    "openai": "^4.76.3",
+    "path": "^0.12.7"
   }
 }
