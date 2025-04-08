@@ -17,7 +17,7 @@
     "axios": "^1.7.9",
     "cheerio": "^1.0.0",
     "colors": "^1.4.0",
-    "discord.js": "^14.16.3",
+    "discord.js": "^14.18.0",
     "dotenv": "^16.4.7",
     "fs": "^0.0.1-security",
     "groq": "^3.67.1",

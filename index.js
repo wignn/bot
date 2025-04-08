@@ -1,49 +1,31 @@
 require('dotenv').config();
-const { TOKEN, CLIENT_ID, GUILD_ID } = process.env;
 const { Client, GatewayIntentBits, Events } = require('discord.js');
-const { getGroqChatCompletion } = require('./ai.js');
+const { registerCommands } = require('./commands/registerCommands.js');
+const handleInteraction = require('./handlers/interactionHandler.js');
+const { getGroqChatCompletion } = require('./utils/groq.js');
 
 const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent
-    ]
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
 });
 
-client.once(Events.ClientReady, readyClient => {
-    console.log('logged in as ${readyClient.user.tag}!');
-})
-
-client.on(Events.MessageCreate, async message => {
-    if (message.author.bot) return;
-    if (message.content.startsWith('!pler')) {
-        const input = message.content.slice(6);
-        console.log(input);
-        const pler  = await getGroqChatCompletion(input);
-        console.log(pler);
-        await message.reply(pler.choices[0]?.message?.content || "");
-        
-    }
+client.once(Events.ClientReady, () => {
+  console.log(`✅ Logged in as ${client.user.tag}`);
+  registerCommands();
 });
 
-client.on(Events.InteractionCreate, async interaction => {
-    if (!interaction.isCommand()) return;
-
-    if(interaction.commandName === 'ping'){
-        await interaction.reply('Pong!');
-    }
-    else if(interaction.commandName === 'beep'){
-        await interaction.reply('Boop!');
-    }
-    else if(interaction.commandName === 'boop'){
-        await interaction.reply('Beep!');
-    }
-    else if(interaction.commandName === 'hello'){
-        await interaction.reply('Hallo yang Mulia Helmy!');
-    }
-    else if(interaction.commandName === 'goodbye'){
-        await interaction.reply('Goodbye!');
-    }  
+client.on(Events.MessageCreate, async (message) => {
+  if (message.author.bot) return;
+  if (message.content.startsWith('!pler')) {
+    const input = message.content.slice(6);
+    const pler = await getGroqChatCompletion(input);
+    await message.reply(pler.choices[0]?.message?.content || '');
+  }
 });
-client.login(TOKEN);
+
+client.on(Events.InteractionCreate, handleInteraction);
+
+client.login(process.env.TOKEN);
