@@ -1,6 +1,6 @@
-import 'dotenv/config';
+require('dotenv').config();
 const { TOKEN, CLIENT_ID, GUILD_ID } = process.env;
-import { REST, Routes } from 'discord.js';
+const { REST, Routes } = require('discord.js');
 
 const command = [
     {
