@@ -1,0 +1,25 @@
+{
+  "name": "hemly",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wignn/bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wignn/bot/issues"
+  },
+  "homepage": "https://github.com/wignn/bot#readme",
+  "description": "",
+  "dependencies": {
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7",
+    "groq-sdk": "^0.19.0"
+  }
+}
